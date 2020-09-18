@@ -7,20 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C06CDD12514EA7C00244FAC /* EnparadigmTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C06CDD02514EA7C00244FAC /* EnparadigmTaskTests.swift */; };
+		4C06CDD92514EB6200244FAC /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0B161F2513FE820023D989 /* WeatherViewModel.swift */; };
 		4C0B15E82512E9C80023D989 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0B15E72512E9C80023D989 /* AppDelegate.swift */; };
 		4C0B15EA2512E9C80023D989 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0B15E92512E9C80023D989 /* SceneDelegate.swift */; };
 		4C0B15EF2512E9C80023D989 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C0B15ED2512E9C80023D989 /* Main.storyboard */; };
 		4C0B15F12512E9C90023D989 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C0B15F02512E9C90023D989 /* Assets.xcassets */; };
 		4C0B15F42512E9C90023D989 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C0B15F22512E9C90023D989 /* LaunchScreen.storyboard */; };
 		4C0B1605251361D50023D989 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0B1604251361D50023D989 /* HomeViewController.swift */; };
-		4C0B160F2513642D0023D989 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0B160A2513642D0023D989 /* APIRouter.swift */; };
 		4C0B16102513642D0023D989 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0B160B2513642D0023D989 /* NetworkService.swift */; };
 		4C0B16112513642D0023D989 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0B160C2513642D0023D989 /* Reachability.swift */; };
 		4C0B1613251366C30023D989 /* WeatherResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0B1612251366C30023D989 /* WeatherResponseModel.swift */; };
-		4C0B16162513D6480023D989 /* WeatherRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0B16152513D6480023D989 /* WeatherRequestModel.swift */; };
+		4C0B161A2513FA4E0023D989 /* NetworkResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0B16192513FA4E0023D989 /* NetworkResults.swift */; };
+		4C0B161D2513FB4E0023D989 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0B161C2513FB4E0023D989 /* Constant.swift */; };
+		4C0B1629251408870023D989 /* ViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0B1628251408870023D989 /* ViewController+Extensions.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		4C06CDD32514EA7C00244FAC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C0B15DC2512E9C80023D989 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C0B15E32512E9C80023D989;
+			remoteInfo = EnparadigmTask;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		4C06CDC82514EA0B00244FAC /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		4C06CDCE2514EA7C00244FAC /* EnparadigmTaskTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EnparadigmTaskTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C06CDD02514EA7C00244FAC /* EnparadigmTaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnparadigmTaskTests.swift; sourceTree = "<group>"; };
+		4C06CDD22514EA7C00244FAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C0B15E42512E9C80023D989 /* EnparadigmTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnparadigmTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C0B15E72512E9C80023D989 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C0B15E92512E9C80023D989 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -29,14 +46,23 @@
 		4C0B15F32512E9C90023D989 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C0B15F52512E9C90023D989 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C0B1604251361D50023D989 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		4C0B160A2513642D0023D989 /* APIRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
 		4C0B160B2513642D0023D989 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		4C0B160C2513642D0023D989 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		4C0B1612251366C30023D989 /* WeatherResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherResponseModel.swift; sourceTree = "<group>"; };
-		4C0B16152513D6480023D989 /* WeatherRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRequestModel.swift; sourceTree = "<group>"; };
+		4C0B16192513FA4E0023D989 /* NetworkResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResults.swift; sourceTree = "<group>"; };
+		4C0B161C2513FB4E0023D989 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		4C0B161F2513FE820023D989 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
+		4C0B1628251408870023D989 /* ViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4C06CDCB2514EA7C00244FAC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4C0B15E12512E9C80023D989 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -47,11 +73,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C06CDC72514EA0B00244FAC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4C06CDC82514EA0B00244FAC /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4C06CDCF2514EA7C00244FAC /* EnparadigmTaskTests */ = {
+			isa = PBXGroup;
+			children = (
+				4C06CDD02514EA7C00244FAC /* EnparadigmTaskTests.swift */,
+				4C06CDD22514EA7C00244FAC /* Info.plist */,
+			);
+			path = EnparadigmTaskTests;
+			sourceTree = "<group>";
+		};
 		4C0B15DB2512E9C80023D989 = {
 			isa = PBXGroup;
 			children = (
 				4C0B15E62512E9C80023D989 /* EnparadigmTask */,
+				4C06CDCF2514EA7C00244FAC /* EnparadigmTaskTests */,
 				4C0B15E52512E9C80023D989 /* Products */,
+				4C06CDC72514EA0B00244FAC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				4C0B15E42512E9C80023D989 /* EnparadigmTask.app */,
+				4C06CDCE2514EA7C00244FAC /* EnparadigmTaskTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -120,8 +166,10 @@
 		4C0B1601251361500023D989 /* Project */ = {
 			isa = PBXGroup;
 			children = (
+				4C0B1627251408020023D989 /* Extension */,
+				4C0B161E2513FE620023D989 /* ViewModel */,
+				4C0B161B2513FAAB0023D989 /* Constant */,
 				4C0B16062513642D0023D989 /* Network */,
-				4C0B16142513D5B70023D989 /* RequestModel */,
 				4C0B1603251361A60023D989 /* Model */,
 				4C0B16022513619D0023D989 /* ViewController */,
 			);
@@ -147,24 +195,58 @@
 		4C0B16062513642D0023D989 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				4C0B160A2513642D0023D989 /* APIRouter.swift */,
 				4C0B160B2513642D0023D989 /* NetworkService.swift */,
 				4C0B160C2513642D0023D989 /* Reachability.swift */,
+				4C0B16192513FA4E0023D989 /* NetworkResults.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
 		};
-		4C0B16142513D5B70023D989 /* RequestModel */ = {
+		4C0B161B2513FAAB0023D989 /* Constant */ = {
 			isa = PBXGroup;
 			children = (
-				4C0B16152513D6480023D989 /* WeatherRequestModel.swift */,
+				4C0B161C2513FB4E0023D989 /* Constant.swift */,
 			);
-			path = RequestModel;
+			path = Constant;
+			sourceTree = "<group>";
+		};
+		4C0B161E2513FE620023D989 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4C0B161F2513FE820023D989 /* WeatherViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		4C0B1627251408020023D989 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				4C0B1628251408870023D989 /* ViewController+Extensions.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4C06CDCD2514EA7C00244FAC /* EnparadigmTaskTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C06CDD72514EA7C00244FAC /* Build configuration list for PBXNativeTarget "EnparadigmTaskTests" */;
+			buildPhases = (
+				4C06CDCA2514EA7C00244FAC /* Sources */,
+				4C06CDCB2514EA7C00244FAC /* Frameworks */,
+				4C06CDCC2514EA7C00244FAC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4C06CDD42514EA7C00244FAC /* PBXTargetDependency */,
+			);
+			name = EnparadigmTaskTests;
+			productName = EnparadigmTaskTests;
+			productReference = 4C06CDCE2514EA7C00244FAC /* EnparadigmTaskTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		4C0B15E32512E9C80023D989 /* EnparadigmTask */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4C0B15F82512E9C90023D989 /* Build configuration list for PBXNativeTarget "EnparadigmTask" */;
@@ -192,6 +274,10 @@
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = mobiotics1067;
 				TargetAttributes = {
+					4C06CDCD2514EA7C00244FAC = {
+						CreatedOnToolsVersion = 11.3;
+						TestTargetID = 4C0B15E32512E9C80023D989;
+					};
 					4C0B15E32512E9C80023D989 = {
 						CreatedOnToolsVersion = 11.3;
 					};
@@ -211,11 +297,19 @@
 			projectRoot = "";
 			targets = (
 				4C0B15E32512E9C80023D989 /* EnparadigmTask */,
+				4C06CDCD2514EA7C00244FAC /* EnparadigmTaskTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4C06CDCC2514EA7C00244FAC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4C0B15E22512E9C80023D989 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -229,22 +323,40 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4C06CDCA2514EA7C00244FAC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C06CDD12514EA7C00244FAC /* EnparadigmTaskTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4C0B15E02512E9C80023D989 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				4C0B15E82512E9C80023D989 /* AppDelegate.swift in Sources */,
-				4C0B160F2513642D0023D989 /* APIRouter.swift in Sources */,
 				4C0B1613251366C30023D989 /* WeatherResponseModel.swift in Sources */,
+				4C0B161D2513FB4E0023D989 /* Constant.swift in Sources */,
 				4C0B15EA2512E9C80023D989 /* SceneDelegate.swift in Sources */,
+				4C0B161A2513FA4E0023D989 /* NetworkResults.swift in Sources */,
+				4C06CDD92514EB6200244FAC /* WeatherViewModel.swift in Sources */,
+				4C0B1629251408870023D989 /* ViewController+Extensions.swift in Sources */,
 				4C0B1605251361D50023D989 /* HomeViewController.swift in Sources */,
 				4C0B16112513642D0023D989 /* Reachability.swift in Sources */,
-				4C0B16162513D6480023D989 /* WeatherRequestModel.swift in Sources */,
 				4C0B16102513642D0023D989 /* NetworkService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4C06CDD42514EA7C00244FAC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4C0B15E32512E9C80023D989 /* EnparadigmTask */;
+			targetProxy = 4C06CDD32514EA7C00244FAC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4C0B15ED2512E9C80023D989 /* Main.storyboard */ = {
@@ -266,6 +378,44 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4C06CDD52514EA7C00244FAC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = EnparadigmTaskTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.project.EnparadigmTaskTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EnparadigmTask.app/EnparadigmTask";
+			};
+			name = Debug;
+		};
+		4C06CDD62514EA7C00244FAC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = EnparadigmTaskTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.project.EnparadigmTaskTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EnparadigmTask.app/EnparadigmTask";
+			};
+			name = Release;
+		};
 		4C0B15F62512E9C90023D989 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -419,6 +569,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4C06CDD72514EA7C00244FAC /* Build configuration list for PBXNativeTarget "EnparadigmTaskTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C06CDD52514EA7C00244FAC /* Debug */,
+				4C06CDD62514EA7C00244FAC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4C0B15DF2512E9C80023D989 /* Build configuration list for PBXProject "EnparadigmTask" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

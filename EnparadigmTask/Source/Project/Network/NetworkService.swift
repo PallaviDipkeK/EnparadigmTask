@@ -1,100 +1,48 @@
 //
-//  Request.swift
+//  APIManager.swift
 //  UniCon
 //
 //  Created by Ricky on 10/5/19.
 //  Copyright © 2019 Rick. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-//import Alamofire
-//import PromiseKit
-//import EVReflection
+final class APIManager {
 
-
-enum NetworkError: Error {
-    case badJsonResponse
-    case badUrl
-    case requestFailedError
-    case customError(String)
+    static let shared = APIManager()
     
-    var localizedDescription: String {
-        switch self {
-        case .badJsonResponse:
-            return "Unexpected values in JSON"
-        case .badUrl:
-            return "Bad url"
-        case .requestFailedError:
-            return "Request Failed"
-        case .customError(let msg):
-            return msg
-        }
+    func getWeatherData(city: String, completionHandler: @escaping (NetworkResult) -> Void) {
+       
+        guard let link = getUrl(city) else {return}
+            
+         URLSession.shared.dataTask(with: link) { (data, response, error) in
+            if let statusCode = (response as? HTTPURLResponse)?.statusCode,
+                let httpStatusCode = HTTPStatusCodes(rawValue: statusCode) {
+                switch httpStatusCode {
+                case HTTPStatusCodes.success:
+                    if let d = data, let obj = try? JSONDecoder().decode(WeatherModel.self, from: d) {
+                          completionHandler(NetworkResult.success(obj))
+                    }
+                case HTTPStatusCodes.tooManyRequests:
+                    completionHandler(NetworkResult.failure(statusCode: HTTPStatusCodes.tooManyRequests, title: "429", subTitle: "Too many requests"))
+                case HTTPStatusCodes.notFound:
+                    completionHandler(NetworkResult.failure(statusCode: HTTPStatusCodes.notFound, title: "404", subTitle: "Not Found"))
+                case HTTPStatusCodes.unAvailable:
+                    completionHandler(NetworkResult.failure(statusCode: HTTPStatusCodes.unAvailable, title: "503", subTitle: "Un Available"))
+                }
+            }
+        }.resume()
     }
-}
-
-
-enum NetworkCallType : String{
-    case get = "GET"
-}
-
-protocol NetworkHandlerDelegate {
-    func getRequestBody(requestUrl : URL) -> Data?
-}
-extension NetworkHandlerDelegate {
-    func getRequestHeader(requestUrl: URL) -> [String : String]{
-        return ["Content-Type": "application/json"]
-    }
- }
-
-public class NetworkHandler: NSObject {
-
-    static let sharedInstance = NetworkHandler()
-     var delegate: NetworkHandlerDelegate?
-   
-    func callNetworkApi(type : NetworkCallType, requestUrlString : String, delegate : NetworkHandlerDelegate, completionBlock: @escaping ( Data?, Bool, String?) -> Void){
-        let urlString = requestUrlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-        
-        guard let requestUrl = URL(string: urlString) else { return }
-        self.delegate = delegate
-        switch type {
-        case .get:
-            callGetRequest(requestUrl: requestUrl, completionBlock: completionBlock)
-         default:
-            print("Error: Api Type not hanlded")
-        }
-    }
-    //MARK:- GET Implementation
     
-    private func callGetRequest(requestUrl: URL, completionBlock: @escaping ( Data?, Bool, String?) -> Void){
-        let urlSession = URLSession(configuration: .default)
-        var request = URLRequest(url: requestUrl)
-        request.httpMethod = NetworkCallType.get.rawValue
-        var header = self.delegate?.getRequestHeader(requestUrl: requestUrl)
-        header?["Authorization"] = ""
-        request.allHTTPHeaderFields = header
+    fileprivate func getUrl(_ city:String) -> URL? {
+      
+        let URLString = "\(APIManagerConstant.baseUrl)q=\(city)&appid=\(APIManagerConstant.appkey)"
         
-        let dataTask = urlSession.dataTask(with: request) { (data, response, error) -> Void in
-            self.handleResponse(data: data, response: response, error: error, requestUrl: requestUrl, completionBlock: completionBlock)
+        guard let url = URL(string:URLString) else {
+            return nil
         }
-        dataTask.resume()
-        
+        return url
     }
- 
-    //MARK:- RESPONSE handling implementation
-    func handleResponse(data: Data?,response: URLResponse?,error: Error?, requestUrl: URL, completionBlock: @escaping ( Data?, Bool, String?) -> Void){
-        if (error != nil) {
-            completionBlock(nil, false, error.debugDescription)
-        }
-        else if  let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 409{
-            completionBlock(nil,false,"Error in received Status Code : \(httpResponse.statusCode)")
-        }
-        else if let httpResponse = response as? HTTPURLResponse, (httpResponse.statusCode != 200 && httpResponse.statusCode != 201){
-            completionBlock(data,false,nil)
-        }
-        else {
-            completionBlock(data,true,nil)
-        }
-    }
+    
 }
-
