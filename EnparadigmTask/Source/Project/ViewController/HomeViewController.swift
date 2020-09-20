@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class HomeViewController: UIViewController {
     
@@ -17,7 +18,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var humidityLabel: UILabel!
     @IBOutlet weak var pressureLabel: UILabel!
     @IBOutlet weak var windLabel: UILabel!
-//    @IBOutlet weak var weatherDescLabel: UILabel!
+    @IBOutlet weak var visibilityLabel: UILabel!
     
     var selectedCity : String = "delhi"
     var viewModel: WeatherViewModel? = WeatherViewModel()
@@ -30,33 +31,50 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController{
     fileprivate func updateData(viewModel: WeatherModel?) {
-        DispatchQueue.main.async {
+       
             self.locationLabel.text = viewModel?.name ?? ""
-            self.currentDateLabel.text = "Today, " +  self.getCurrentData()
+            self.currentDateLabel.text = self.viewModel?.getCurrentData()
             self.temperatureLabel.text = self.viewModel?.getTempreture()
             self.weatherDescLabel.text = viewModel?.weather?.first?.main ?? ""
-        }
-    }
+            self.pressureLabel.text = self.viewModel?.getCurrentData()
+            
+            self.humidityLabel.text = self.viewModel?.getHumidity()
+            self.pressureLabel.text = self.viewModel?.getPressureValue()
+            self.windLabel.text = self.viewModel?.getWind()
+            self.visibilityLabel.text = self.viewModel?.getVisibity()
+         }
+    fileprivate func updateLocalData(viewModel: WeatherLocalData?) {
+        self.locationLabel.text = viewModel?.city ?? ""
+               self.currentDateLabel.text = self.viewModel?.getCurrentData()
+               self.temperatureLabel.text = self.viewModel?.getTempreture()
+               self.weatherDescLabel.text = viewModel?.weather_Desc
+               self.pressureLabel.text = self.viewModel?.getCurrentData()
+               
+               self.humidityLabel.text = self.viewModel?.getHumidity()
+               self.pressureLabel.text = self.viewModel?.getPressureValue()
+               self.windLabel.text = self.viewModel?.getWind()
+               self.visibilityLabel.text = self.viewModel?.getVisibity()
+             }
     
     func getWheatherData(city: String) {
         if let viewModel = self.viewModel {
             viewModel.completionHandler = { (success, error, title, subtitle) in
                 if success {
-                    self.updateData(viewModel: viewModel.model)
+                     DispatchQueue.main.async {
+                 self.updateData(viewModel: viewModel.model)
+                    }
                 }else{
-                    self.showAlert(title: title, message: subtitle, preferredStyle: .alert, alertActions: [(AlertAction.retryAction.rawValue, .default)]) { (index) in
+//                    self.showAlert(title: title, message: subtitle, preferredStyle: .alert, alertActions: [(AlertAction.retryAction.rawValue, .default)]) { (index) in
+//                    }
+                     DispatchQueue.main.async {
+                    self.updateLocalData(viewModel: viewModel.localModel)
                     }
                 }
             }
             viewModel.getData(city: selectedCity)
         }
     }
+
     
+   
 }
-//such as wind, pressure, humidity, etc.
-//"temp": 310.69,
-//      "feels_like": 313.09,
-//      "temp_min": 310.15,
-//      "temp_max": 311.15,
-//      "pressure": 1001,
-//      "humidity": 42

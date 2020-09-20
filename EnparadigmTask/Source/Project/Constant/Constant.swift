@@ -30,3 +30,4 @@ enum InternetAvailability: String {
     case title = "Internet"
     case message = "Internet not Avaiable"
 }
+

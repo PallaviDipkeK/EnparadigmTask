@@ -19,10 +19,5 @@ extension UIViewController {
         }
         self.present(alertController, animated: true, completion: nil)
     }
-    func getCurrentData() -> (String){
-        let date = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd MMM"
-        return formatter.string(from: date)
-    }
+ 
 }

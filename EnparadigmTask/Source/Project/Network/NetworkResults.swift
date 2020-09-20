@@ -18,4 +18,5 @@ enum HTTPStatusCodes: Int, Equatable {
     case notFound = 404
     case tooManyRequests = 429
     case unAvailable = 503
+     case noInternetAvailble = 502
 }

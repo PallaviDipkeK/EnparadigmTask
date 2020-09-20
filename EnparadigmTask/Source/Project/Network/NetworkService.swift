@@ -14,11 +14,11 @@ final class APIManager {
     
     func getWeatherData(city: String, completionHandler: @escaping (NetworkResult) -> Void) {
        
-        guard let link = getUrl(city) else {return}
+        guard let link = getUrl(city),Reachability.isConnectedToNetwork() else {return completionHandler(NetworkResult.failure(statusCode: HTTPStatusCodes.noInternetAvailble, title: "502", subTitle: "No Network Availble"))}
             
          URLSession.shared.dataTask(with: link) { (data, response, error) in
             if let statusCode = (response as? HTTPURLResponse)?.statusCode,
-                let httpStatusCode = HTTPStatusCodes(rawValue: statusCode) {
+                let httpStatusCode = HTTPStatusCodes(rawValue: statusCode),error == nil{
                 switch httpStatusCode {
                 case HTTPStatusCodes.success:
                     if let d = data, let obj = try? JSONDecoder().decode(WeatherModel.self, from: d) {
@@ -30,6 +30,8 @@ final class APIManager {
                     completionHandler(NetworkResult.failure(statusCode: HTTPStatusCodes.notFound, title: "404", subTitle: "Not Found"))
                 case HTTPStatusCodes.unAvailable:
                     completionHandler(NetworkResult.failure(statusCode: HTTPStatusCodes.unAvailable, title: "503", subTitle: "Un Available"))
+                case .noInternetAvailble:
+                    completionHandler(NetworkResult.failure(statusCode: HTTPStatusCodes.noInternetAvailble, title: "502", subTitle: "No Nwtwork Availble"))
                 }
             }
         }.resume()
