@@ -11,6 +11,7 @@
 		4C06CDD92514EB6200244FAC /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0B161F2513FE820023D989 /* WeatherViewModel.swift */; };
 		4C06CDDC2516946800244FAC /* EnparadigmTask.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4C06CDDA2516946800244FAC /* EnparadigmTask.xcdatamodeld */; };
 		4C06CDDF2517651800244FAC /* WeatherLocalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C06CDDE2517651800244FAC /* WeatherLocalData.swift */; };
+		4C06CDE12517F73A00244FAC /* LocalDataBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C06CDE02517F73A00244FAC /* LocalDataBaseService.swift */; };
 		4C0B15E82512E9C80023D989 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0B15E72512E9C80023D989 /* AppDelegate.swift */; };
 		4C0B15EA2512E9C80023D989 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0B15E92512E9C80023D989 /* SceneDelegate.swift */; };
 		4C0B15EF2512E9C80023D989 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C0B15ED2512E9C80023D989 /* Main.storyboard */; };
@@ -42,6 +43,8 @@
 		4C06CDD22514EA7C00244FAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C06CDDB2516946800244FAC /* EnparadigmTask.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EnparadigmTask.xcdatamodel; sourceTree = "<group>"; };
 		4C06CDDE2517651800244FAC /* WeatherLocalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherLocalData.swift; sourceTree = "<group>"; };
+		4C06CDE02517F73A00244FAC /* LocalDataBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataBaseService.swift; sourceTree = "<group>"; };
+		4C06CDE22517FBCB00244FAC /* EnparadigmTask 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "EnparadigmTask 2.xcdatamodel"; sourceTree = "<group>"; };
 		4C0B15E42512E9C80023D989 /* EnparadigmTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnparadigmTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C0B15E72512E9C80023D989 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C0B15E92512E9C80023D989 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				4C06CDDE2517651800244FAC /* WeatherLocalData.swift */,
+				4C06CDE02517F73A00244FAC /* LocalDataBaseService.swift */,
 			);
 			path = LocalDB;
 			sourceTree = "<group>";
@@ -105,7 +109,6 @@
 		4C0B15DB2512E9C80023D989 = {
 			isa = PBXGroup;
 			children = (
-				4C06CDDA2516946800244FAC /* EnparadigmTask.xcdatamodeld */,
 				4C0B15E62512E9C80023D989 /* EnparadigmTask */,
 				4C06CDCF2514EA7C00244FAC /* EnparadigmTaskTests */,
 				4C0B15E52512E9C80023D989 /* Products */,
@@ -134,6 +137,7 @@
 		4C0B15FB2512F00F0023D989 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4C06CDDA2516946800244FAC /* EnparadigmTask.xcdatamodeld */,
 				4C0B15F52512E9C90023D989 /* Info.plist */,
 				4C0B15F02512E9C90023D989 /* Assets.xcassets */,
 			);
@@ -355,6 +359,7 @@
 				4C06CDDC2516946800244FAC /* EnparadigmTask.xcdatamodeld in Sources */,
 				4C0B15EA2512E9C80023D989 /* SceneDelegate.swift in Sources */,
 				4C0B161A2513FA4E0023D989 /* NetworkResults.swift in Sources */,
+				4C06CDE12517F73A00244FAC /* LocalDataBaseService.swift in Sources */,
 				4C06CDD92514EB6200244FAC /* WeatherViewModel.swift in Sources */,
 				4C0B1629251408870023D989 /* ViewController+Extensions.swift in Sources */,
 				4C0B1605251361D50023D989 /* HomeViewController.swift in Sources */,
@@ -553,6 +558,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NPVNN8HT58;
 				INFOPLIST_FILE = EnparadigmTask/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -571,6 +577,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NPVNN8HT58;
 				INFOPLIST_FILE = EnparadigmTask/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -618,6 +625,7 @@
 		4C06CDDA2516946800244FAC /* EnparadigmTask.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				4C06CDE22517FBCB00244FAC /* EnparadigmTask 2.xcdatamodel */,
 				4C06CDDB2516946800244FAC /* EnparadigmTask.xcdatamodel */,
 			);
 			currentVersion = 4C06CDDB2516946800244FAC /* EnparadigmTask.xcdatamodel */;

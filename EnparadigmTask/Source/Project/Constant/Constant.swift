@@ -25,9 +25,14 @@ enum AlertAction: String {
     case retryAction = "Retry"
 
 }
-
-enum InternetAvailability: String {
-    case title = "Internet"
-    case message = "Internet not Avaiable"
+ 
+struct DBMembers{
+    static let humidity = "humidity"
+    static let city = "city"
+    static let temperature = "temperature"
+    static let visibility = "visibility"
+    static let wind = "wind"
+    static let pressure = "pressure"
+    static let weather_Desc = "weather_Desc"
+    static let entityName = "WeatherInfo"
 }
-
