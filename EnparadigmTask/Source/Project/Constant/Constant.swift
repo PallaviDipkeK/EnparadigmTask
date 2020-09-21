@@ -36,3 +36,12 @@ struct DBMembers{
     static let weather_Desc = "weather_Desc"
     static let entityName = "WeatherInfo"
 }
+
+enum InternetAvailability: String {
+    case title = "Internet"
+    case message = "Internet not Avaiable"
+}
+enum DataAvailablility: String {
+    case title = "Sorry"
+    case message = "No Data Found"
+}

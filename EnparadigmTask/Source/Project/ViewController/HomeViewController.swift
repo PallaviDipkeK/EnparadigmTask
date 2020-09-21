@@ -19,11 +19,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var pressureLabel: UILabel!
     @IBOutlet weak var windLabel: UILabel!
     @IBOutlet weak var visibilityLabel: UILabel!
-    var selectedCity : String = "Bengaluru"{
-        didSet{
-            self.getWheatherData(city: selectedCity)
-        }
-    }
+    var selectedCity : String = "Bengaluru"
     var cityList : [String] = ["Bengaluru","Delhi","Pune","Noida"]
     var viewModel: WeatherViewModel? = WeatherViewModel()
     var pickerView = UIPickerView()
@@ -34,7 +30,7 @@ class HomeViewController: UIViewController {
         self.pickerView.delegate = self
         self.getWheatherData(city: selectedCity)
         print("Documents Directory: ", FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last ?? "Not Found!")
-
+        
     }
     // http://openweathermap.org/img/w/50d.png
 }
@@ -43,51 +39,85 @@ extension HomeViewController{
     
     fileprivate func updateData<T>(viewModel: T) {
         if let serverModel = viewModel as? WeatherModel {
-            print(serverModel)
-             self.locationLabel.text = serverModel.name ?? ""
+            self.locationLabel.text = serverModel.name ?? ""
             self.weatherDescLabel.text = serverModel.weather?.first?.main ?? ""
+            self.currentDateLabel.text = self.viewModel?.getCurrentData()
+            self.temperatureLabel.text = self.viewModel?.getTempreture()
+            self.pressureLabel.text = self.viewModel?.getCurrentData()
+            self.humidityLabel.text = self.viewModel?.getHumidity()
+            self.pressureLabel.text = self.viewModel?.getPressureValue()
+            self.windLabel.text = self.viewModel?.getWind()
+            self.visibilityLabel.text = self.viewModel?.getVisibity()
         }
         if let localModel = viewModel as? WeatherLocalData {
-            print(localModel)
-             self.locationLabel.text = localModel.city ?? ""
+            self.locationLabel.text = localModel.city ?? ""
             self.weatherDescLabel.text = localModel.weather_Desc ?? ""
+            self.currentDateLabel.text = self.viewModel?.getCurrentData()
+            self.temperatureLabel.text = self.viewModel?.getTempreture()
+            self.pressureLabel.text = self.viewModel?.getCurrentData()
+            self.humidityLabel.text = self.viewModel?.getHumidity()
+            self.pressureLabel.text = self.viewModel?.getPressureValue()
+            self.windLabel.text = self.viewModel?.getWind()
+            self.visibilityLabel.text = self.viewModel?.getVisibity()
         }
-       self.currentDateLabel.text = self.viewModel?.getCurrentData()
-        self.temperatureLabel.text = self.viewModel?.getTempreture()
-        self.pressureLabel.text = self.viewModel?.getCurrentData()
-        self.humidityLabel.text = self.viewModel?.getHumidity()
-        self.pressureLabel.text = self.viewModel?.getPressureValue()
-        self.windLabel.text = self.viewModel?.getWind()
-        self.visibilityLabel.text = self.viewModel?.getVisibity()
+        
     }
     
     func getWheatherData(city: String) {
         if let viewModel = self.viewModel {
-            viewModel.completionHandler = { (success, error, title, subtitle) in
-                DispatchQueue.main.async {
-                    success == true ? self.updateData(viewModel: viewModel.model.self) : self.updateData(viewModel: viewModel.localModel.self)
+            if Reachability.isConnectedToNetwork(){
+                viewModel.completionHandler = { (success, error, title, subtitle) in
+                    DispatchQueue.main.async {
+                        success == true ? self.updateData(viewModel: viewModel.model.self) : self.updateData(viewModel: viewModel.localModel.self)
+                    }
+                }
+                viewModel.getData(city: selectedCity)
+            }else{
+                let context = LocalDataBaseService.context
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: DBMembers.entityName)
+                let results = try? context.fetch(fetchRequest)
+                let obtainedResults = results as! [NSManagedObject]
+                if obtainedResults.first != nil{
+                    viewModel.getValueFromLocal()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        self.updateData(viewModel: viewModel.localModel)
+                    }
+                }else{
+                    self.showAlert(title: DataAvailablility.title.rawValue, message: DataAvailablility.message.rawValue, preferredStyle: .alert, alertActions: [(AlertAction.retryAction.rawValue, .default)]) { (index) in
+                        print(DataAvailablility.message.rawValue)
+                    }
                 }
             }
-            viewModel.getData(city: selectedCity)
         }
     }
     
     @IBAction func selectCityClicked(_ sender: UIButton) {
-        pickerView = UIPickerView.init()
-        pickerView.delegate = self
-        pickerView.backgroundColor = UIColor.white
-        pickerView.setValue(UIColor.black, forKey: "textColor")
-        pickerView.autoresizingMask = .flexibleWidth
-        pickerView.contentMode = .center
-        pickerView.frame = CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 300)
-        self.view.addSubview(pickerView)
-        
-        toolBar = UIToolbar.init(frame: CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 50))
-        toolBar.barStyle = .blackTranslucent
-        // toolBar.items = [UIBarButtonItem.init(title: "Done", style: .done, target: self, action: #selector(onDoneButtonTapped))]
-        self.view.addSubview(toolBar)
+        if Reachability.isConnectedToNetwork(){
+            pickerView = UIPickerView.init()
+            pickerView.delegate = self
+            pickerView.backgroundColor = UIColor.white
+            pickerView.setValue(UIColor.black, forKey: "textColor")
+            pickerView.autoresizingMask = .flexibleWidth
+            pickerView.contentMode = .center
+            pickerView.frame = CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 300)
+            self.view.addSubview(pickerView)
+            
+            toolBar = UIToolbar.init(frame: CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 50))
+            toolBar.barStyle = .black
+            toolBar.items = [UIBarButtonItem.init(title: "Done", style: .done, target: self, action: #selector(onDoneButtonTapped))]
+            self.view.addSubview(toolBar)
+        }else{
+            self.showAlert(title: InternetAvailability.title.rawValue, message: InternetAvailability.message.rawValue, preferredStyle: .alert, alertActions: [(AlertAction.retryAction.rawValue, .default)]) { (index) in
+                print(InternetAvailability.message.rawValue)
+            }
+        }
     }
     
+    @objc func onDoneButtonTapped(_ sender: UIButton){
+        self.getWheatherData(city: selectedCity)
+        toolBar.removeFromSuperview()
+        pickerView.removeFromSuperview()
+    }
 }
 
 
@@ -104,7 +134,6 @@ extension HomeViewController : UIPickerViewDataSource,UIPickerViewDelegate{
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.selectedCity = cityList[row]
-        toolBar.removeFromSuperview()
-        pickerView.removeFromSuperview()
+        
     }
 }
