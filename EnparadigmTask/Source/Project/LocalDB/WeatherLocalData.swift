@@ -17,3 +17,5 @@ struct WeatherLocalData {
      let pressure : Int?
      let weather_Desc : String?
 }
+
+

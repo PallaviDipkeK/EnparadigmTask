@@ -24,6 +24,7 @@
 		4C0B161A2513FA4E0023D989 /* NetworkResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0B16192513FA4E0023D989 /* NetworkResults.swift */; };
 		4C0B161D2513FB4E0023D989 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0B161C2513FB4E0023D989 /* Constant.swift */; };
 		4C0B1629251408870023D989 /* ViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0B1628251408870023D989 /* ViewController+Extensions.swift */; };
+		4C372AC92518744E00CB6CCC /* LocalDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C372AC82518744E00CB6CCC /* LocalDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		4C0B161C2513FB4E0023D989 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		4C0B161F2513FE820023D989 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
 		4C0B1628251408870023D989 /* ViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extensions.swift"; sourceTree = "<group>"; };
+		4C372AC82518744E00CB6CCC /* LocalDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 			children = (
 				4C06CDDE2517651800244FAC /* WeatherLocalData.swift */,
 				4C06CDE02517F73A00244FAC /* LocalDataBaseService.swift */,
+				4C372AC82518744E00CB6CCC /* LocalDataManager.swift */,
 			);
 			path = LocalDB;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C0B15E82512E9C80023D989 /* AppDelegate.swift in Sources */,
+				4C372AC92518744E00CB6CCC /* LocalDataManager.swift in Sources */,
 				4C0B1613251366C30023D989 /* WeatherResponseModel.swift in Sources */,
 				4C0B161D2513FB4E0023D989 /* Constant.swift in Sources */,
 				4C06CDDC2516946800244FAC /* EnparadigmTask.xcdatamodeld in Sources */,

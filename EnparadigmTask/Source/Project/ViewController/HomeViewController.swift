@@ -24,15 +24,14 @@ class HomeViewController: UIViewController {
     var viewModel: WeatherViewModel? = WeatherViewModel()
     var pickerView = UIPickerView()
     var toolBar = UIToolbar()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.pickerView.dataSource = self
         self.pickerView.delegate = self
         self.getWheatherData(city: selectedCity)
-        print("Documents Directory: ", FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last ?? "Not Found!")
-        
     }
-    // http://openweathermap.org/img/w/50d.png
 }
 
 extension HomeViewController{
@@ -43,8 +42,7 @@ extension HomeViewController{
             self.weatherDescLabel.text = serverModel.weather?.first?.main ?? ""
             self.currentDateLabel.text = self.viewModel?.getCurrentData()
             self.temperatureLabel.text = self.viewModel?.getTempreture()
-            self.pressureLabel.text = self.viewModel?.getCurrentData()
-            self.humidityLabel.text = self.viewModel?.getHumidity()
+           self.humidityLabel.text = self.viewModel?.getHumidity()
             self.pressureLabel.text = self.viewModel?.getPressureValue()
             self.windLabel.text = self.viewModel?.getWind()
             self.visibilityLabel.text = self.viewModel?.getVisibity()
@@ -54,7 +52,6 @@ extension HomeViewController{
             self.weatherDescLabel.text = localModel.weather_Desc ?? ""
             self.currentDateLabel.text = self.viewModel?.getCurrentData()
             self.temperatureLabel.text = self.viewModel?.getTempreture()
-            self.pressureLabel.text = self.viewModel?.getCurrentData()
             self.humidityLabel.text = self.viewModel?.getHumidity()
             self.pressureLabel.text = self.viewModel?.getPressureValue()
             self.windLabel.text = self.viewModel?.getWind()
@@ -78,13 +75,12 @@ extension HomeViewController{
                 let results = try? context.fetch(fetchRequest)
                 let obtainedResults = results as! [NSManagedObject]
                 if obtainedResults.first != nil{
-                    viewModel.getValueFromLocal()
+                    viewModel.localModel = LocalDataManager.sharedInstance.getValueFromLocal()
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         self.updateData(viewModel: viewModel.localModel)
                     }
                 }else{
                     self.showAlert(title: DataAvailablility.title.rawValue, message: DataAvailablility.message.rawValue, preferredStyle: .alert, alertActions: [(AlertAction.retryAction.rawValue, .default)]) { (index) in
-                        print(DataAvailablility.message.rawValue)
                     }
                 }
             }
@@ -107,8 +103,7 @@ extension HomeViewController{
             toolBar.items = [UIBarButtonItem.init(title: "Done", style: .done, target: self, action: #selector(onDoneButtonTapped))]
             self.view.addSubview(toolBar)
         }else{
-            self.showAlert(title: InternetAvailability.title.rawValue, message: InternetAvailability.message.rawValue, preferredStyle: .alert, alertActions: [(AlertAction.retryAction.rawValue, .default)]) { (index) in
-                print(InternetAvailability.message.rawValue)
+            self.showAlert(title: InternetAvailability.title.rawValue, message: InternetAvailability.message.rawValue, preferredStyle: .alert, alertActions: [(AlertAction.okAction.rawValue, .default)]) { (index) in
             }
         }
     }
